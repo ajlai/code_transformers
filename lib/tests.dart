@@ -44,6 +44,10 @@ Future applyTransformers(List<List<Transformer>> phases,
     StringFormatter formatter: StringFormatter.noTrailingWhitespace}) {
   var helper = new TestHelper(phases, inputs, messages, formatter: formatter)
     ..run();
+  helper.barback.getAllAssets().then((all) => print("barback.allAssets: ${all.ids}"));
+  helper.barback.results.listen((r) => print("barback.results: $r"));
+  helper.barback.errors.listen((e) => print("barback.errors: ${e}"));
+  helper.barback.log.listen((d) => print("barback.log: ${d.message}"));
   return helper.checkAll(results).then((_) => helper.tearDown());
 }
 

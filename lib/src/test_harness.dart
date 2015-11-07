@@ -108,6 +108,7 @@ class TestHelper implements PackageProvider {
 
   Future checkAll(Map<String, String> files) {
     return barback.results.first.then((_) {
+      print("checkAll files ${this.files.keys}");
       if (files == null) return null;
       var futures = [];
       files.forEach((k, v) {
